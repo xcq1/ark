@@ -16,4 +16,4 @@ WORKDIR /ark/
 
 ADD run.sh /ark/run.sh
 
-CMD ["/steam/install.sh", "/ark/run.sh"]
+CMD ["/ark/run.sh"]
