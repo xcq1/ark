@@ -27,6 +27,10 @@ You will need to publish the following ports:
 - 27015/udp
 - 32330 (if you want rcon support, the password can be found and/or replaced in `/ark/rcon_pass`)
 
+### Stop
+
+Stopping or restarting the server will cause it to try to save the save game, however the default timeout is only 10 seconds for this. In case your save is large or your machine is slow, be sure to include a longer timeout by adding `-t 60`.
+
 ### Envs
 
 - `SERVER_NAME` **must** be set to your desired server name (visible in the server browser)
@@ -50,6 +54,18 @@ You will need to publish the following ports:
 
 ### Example
 
-This is how I start my non-public Ark servers at the time of developing this image:
+This is how I start my non-public Ark servers for the first time at the time of developing this image:
 
-- `TBD`
+- `docker run xcq1/ark
+-e SERVER_NAME=<server-name> \
+-e MOD_LIST=<list-of-mods> \
+-e DIFFICULTY=5.0 \
+-e MAX_PLAYERS=10 \
+-e BATTLE_EYE=false \
+-e WHITELIST_USERS=<censored> \
+-e ADDITIONAL_COMMAND_LINE=?AllowCrateSpawnsOnTopOfStructures=true?AllowRaidDinoFeeding=true?DestroyUnconnectedWaterPipes=true?EnableExtraStructurePreventionVolumes=false?OverrideStructurePlatformPrevention=true -ForceAllowCaveFlyers -noantispeedhack -NoBattlEye \
+-e CLUSTER_NAME=xcqcluster \
+-v /home/steam/ark/ShooterGame/Saved:/ark/ShooterGame/Saved \
+-p 7778:7778 -p 7778:7778/udp -p 27015:27015 -p 27015:27015/udp \
+--health-start-period=2m \
+--restart=always`
