@@ -7,9 +7,10 @@ fi
 
 /steam/install.sh
 
-# install Ark's own SteamCMD for workshop/automanagedmod support
+# copy SteamCMD for workshop/automanagedmod support
 if [ ! -e "/ark/cmd_installed" ]; then
-	/ark/SteamCMDInstall.sh 
+	mkdir -p /ark/Engine/Binaries/ThirdParty/SteamCMD/Linux/
+	cp -r /steam/* /ark/Engine/Binaries/ThirdParty/SteamCMD/Linux/
 	touch /ark/cmd_installed
 fi
 
@@ -62,5 +63,6 @@ else
 	CLUSTER_CMD=""
 fi
 
+cd /ark/ShooterGame/Binaries/Linux
 set -x
 exec /ark/ShooterGame/Binaries/Linux/ShooterGameServer ${MAP_NAME}?listen${MOD_CMD}?SessionName=${SERVER_NAME}?RCONEnabled=True?RCONPort=32330?ServerAdminPassword=${RCON_PASSWORD}?RCONServerGameLogBuffer=${RCON_GAME_LOG_BUFFER}?MaxPlayers=${MAX_PLAYERS}${DIFFICULTY_CMD}${SAVE_GAME_CMD}${ADDITIONAL_SERVER_COMMAND_LINE} -server -servergamelog -log -automanagedmods ${WHITELIST_CMD} ${BATTLE_EYE_CMD} ${CLUSTER_CMD}

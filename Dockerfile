@@ -1,10 +1,6 @@
 FROM xcq1/steamcmd-rcon
 LABEL maintainer="mail@tobiaskuhn.de"
 
-RUN apt update && \
-	apt install -y sudo wget && \
-	apt clean
-
 # set inherited variables
 
 ENV STEAMID "376030"
