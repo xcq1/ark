@@ -7,6 +7,12 @@ fi
 
 /steam/install.sh
 
+# install Ark's own SteamCMD for workshop/automanagedmod support
+if [ ! -e "/ark/cmd_installed" ]; then
+	/ark/SteamCMDInstall.sh 
+	touch /ark/cmd_installed
+fi
+
 # RCON password magic
 
 if [ ! -e "/ark/rcon_pass" ]; then

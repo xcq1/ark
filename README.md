@@ -10,6 +10,7 @@ Automated dedicated Ark: Survival Evolved server
 
 * Auto-Restart on update rollout, with broadcast & delayed until no more players present
 * Auto-Restart on mods update, with broadcast & delayed until no more players present
+* Try to optimize the baking in of envs one might one to change
 
 ## Usage
 
@@ -56,16 +57,17 @@ Stopping or restarting the server will cause it to try to save the save game, ho
 
 This is how I start my non-public Ark servers for the first time at the time of developing this image:
 
-- `docker run xcq1/ark
--e SERVER_NAME=<server-name> \
--e MOD_LIST=<list-of-mods> \
--e DIFFICULTY=5.0 \
--e MAX_PLAYERS=10 \
--e BATTLE_EYE=false \
--e WHITELIST_USERS=<censored> \
--e ADDITIONAL_COMMAND_LINE=?AllowCrateSpawnsOnTopOfStructures=true?AllowRaidDinoFeeding=true?DestroyUnconnectedWaterPipes=true?EnableExtraStructurePreventionVolumes=false?OverrideStructurePlatformPrevention=true -ForceAllowCaveFlyers -noantispeedhack -NoBattlEye \
--e CLUSTER_NAME=xcqcluster \
--v /home/steam/ark/ShooterGame/Saved:/ark/ShooterGame/Saved \
--p 7778:7778 -p 7778:7778/udp -p 27015:27015 -p 27015:27015/udp \
---health-start-period=2m \
---restart=always`
+- `docker run -d \`
+`-e SERVER_NAME=<server-name> \`
+`-e MOD_LIST=<list-of-mods> \`
+`-e DIFFICULTY=5.0 \`
+`-e MAX_PLAYERS=10 \`
+`-e BATTLE_EYE=false \`
+`-e WHITELIST_USERS=<censored> \`
+`-e ADDITIONAL_COMMAND_LINE=?AllowCrateSpawnsOnTopOfStructures=true?AllowRaidDinoFeeding=true?DestroyUnconnectedWaterPipes=true?EnableExtraStructurePreventionVolumes=false?OverrideStructurePlatformPrevention=true -ForceAllowCaveFlyers -noantispeedhack -NoBattlEye \`
+`-e CLUSTER_NAME=xcqcluster \`
+`-v /home/steam/ark/ShooterGame/Saved:/ark/ShooterGame/Saved \`
+`-p 7778:7778 -p 7778:7778/udp -p 27015:27015 -p 27015:27015/udp \`
+`--health-start-period=2m \`
+`--restart=always \`
+` xcq1/ark`
