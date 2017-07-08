@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 if [ -z "${SERVER_NAME}" ]; then
 	echo "No server name configured, cannot start up without one."
