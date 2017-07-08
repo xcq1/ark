@@ -37,6 +37,8 @@ EXPOSE 32330
 
 VOLUME /ark/ShooterGame/Saved
 
+STOPSIGNAL SIGINT
+
 WORKDIR /ark/
 
 ADD run.sh /ark/run.sh
