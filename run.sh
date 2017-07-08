@@ -31,14 +31,14 @@ else
 	MOD_CMD=""
 fi
 
-if [ "$BATTLE_EYE" = "true" ]; then
+if [ "${BATTLE_EYE}" = "true" ]; then
 	BATTLE_EYE_CMD="-UseBattleye"
 else
 	BATTLE_EYE_CMD="-NoBattlEye"
 fi
 
 if [ -n "${DIFFICULTY}" ]; then
-	DIFFICULTY_CMD="?OverrideOfficialDifficulty${DIFFICULTY}"
+	DIFFICULTY_CMD="?OverrideOfficialDifficulty=${DIFFICULTY}"
 else
 	DIFFICULTY_CMD=""
 fi
