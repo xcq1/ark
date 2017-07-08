@@ -1,6 +1,10 @@
 # ark
 Automated dedicated Ark: Survival Evolved server
 
+[![Docker Build Status](https://img.shields.io/docker/build/xcq1/ark.svg?style=flat-square)]()
+[![Docker Build Status](https://img.shields.io/docker/pulls/xcq1/ark.svg?style=flat-square)]()
+[![Docker Build Status](https://img.shields.io/docker/stars/xcq1/ark.svg?style=flat-square)]()
+
 ## ToDo
 **Planned features:**
 
