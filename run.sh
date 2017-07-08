@@ -38,4 +38,16 @@ else
 	WHITELIST_CMD=""
 fi
 
-/ark/ShooterGame/Binaries/Linux/ShooterGameServer TheIsland?SessionName=${SERVER_NAME}?listen?RCONEnabled=True?RCONPort=32330?ServerAdminPassword=${RCON_PASSWORD}?RCONServerGameLogBuffer=${RCON_GAME_LOG_BUFFER}?MaxPlayers=${MAX_PLAYERS}${DIFFICULTY_CMD}${ADDITIONAL_SERVER_COMMAND_LINE} -server -servergamelog -automanagedmods ${WHITELIST_CMD} ${BATTLE_EYE_CMD}
+if [ -n "${SAVE_GAME_NAME}" ]; then
+	SAVE_GAME_CMD="?AltSaveDirectoryName=${SAVE_GAME_NAME}"
+else
+	SAVE_GAME_CMD=""
+fi
+
+if [ -n "${CLUSTER_NAME}" ]; then
+	CLUSTER_CMD="-NoTransferFromFiltering -clusterid=${CLUSTER_NAME}"
+else
+	CLUSTER_CMD=""
+fi
+
+/ark/ShooterGame/Binaries/Linux/ShooterGameServer ${MAP_NAME}?SessionName=${SERVER_NAME}?listen?RCONEnabled=True?RCONPort=32330?ServerAdminPassword=${RCON_PASSWORD}?RCONServerGameLogBuffer=${RCON_GAME_LOG_BUFFER}?MaxPlayers=${MAX_PLAYERS}${DIFFICULTY_CMD}${SAVE_GAME_CMD}${ADDITIONAL_SERVER_COMMAND_LINE} -server -servergamelog -automanagedmods ${WHITELIST_CMD} ${BATTLE_EYE_CMD} ${CLUSTER_CMD}
