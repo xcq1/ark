@@ -8,8 +8,6 @@ Automated dedicated Ark: Survival Evolved server
 ## ToDo
 **Planned features:**
 
-* Configurable mod list
-* Configurable setting entries
 * Auto-Restart on update rollout, with broadcast & delayed until no more players present
 * Auto-Restart on mods update, with broadcast & delayed until no more players present
 
@@ -19,7 +17,7 @@ Automated dedicated Ark: Survival Evolved server
 
 In order to run the server, you should perform the following operations:
 
-The save game folder `/ark/ShooterGame/Saved` is a data volume. You should either mount in a host path or a named Docker volume container, or else Docker will create a new volume container on every start.
+The save game folder `/ark/ShooterGame/Saved` is a data volume. You should either mount in a host path or a named Docker volume container, or else Docker will create a new volume container on every start. Since Ark stores the configs inside a sub-folder `Config`, we consider them part of the save game and you can edit them there (`Game.ini`, `GameUserSettings.ini`, ...).
 
 You will need to publish the following ports:
 
@@ -33,6 +31,7 @@ You will need to publish the following ports:
 
 - `SERVER_NAME` **must** be set to your desired server name (visible in the server browser)
 - `MAP_NAME` can be set to load a different map (default `TheIsland`), other options at the time of writing are the DLCs `TheCenter`, `ScorchedEarth_P` and `Ragnarok`
+- `MOD_LIST` can be set to a comma-separated list of mod ids to include them on the server
 - `DIFFICULTY` can be set to an `OverrideOfficialDifficulty` value, if so desired, otherwise it will not be used in the start command line
 - `MAX_PLAYERS` can be set to change the maximum players allowed at the same time on the server (default 70)
 - `BATTLE_EYE` can be set to any value besides `true` to disable it (default `true`)
