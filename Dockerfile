@@ -1,6 +1,10 @@
 FROM xcq1/steamcmd-rcon
 LABEL maintainer="mail@tobiaskuhn.de"
 
+RUN apt update && \
+	apt install -y sudo wget && \
+	apt clean
+
 # set inherited variables
 
 ENV STEAMID "376030"
@@ -36,13 +40,10 @@ EXPOSE 27015/udp
 EXPOSE 32330
 
 VOLUME /ark/ShooterGame/Saved
-
 STOPSIGNAL SIGINT
-
 WORKDIR /ark/
 
 ADD run.sh /ark/run.sh
-
 RUN chmod +x /ark/run.sh
 
 CMD ["/ark/run.sh"]
