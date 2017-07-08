@@ -6,11 +6,14 @@ LABEL maintainer="mail@tobiaskuhn.de"
 ENV STEAMID "376030"
 ENV INSTALLDIR "/ark/"
 
-ENV RCON_HOST "localhost" # this needs to be set to the external IP on run
+ENV RCON_HOST "localhost"
 ENV RCON_PORT "32330"
-ENV RCON_PASSWORD "" # will be read in from /ark/rcon_pass
+ENV RCON_PASSWORD ""
 ENV RCON_HEALTH_COMMAND "listplayers"
-ENV RCON_HEALTH_REGEXP "(No players|[0-9]\.)"
+ENV RCON_HEALTH_REGEXP "(No Players|[0-9]\.)"
+
+# auto-fetch the rcon password from /ark/rcon_pass
+RUN sed -i 's|python|export RCON_PASSWORD=$(cat /ark/rcon_pass)\n&|' /rcon/healthcheck.sh
 
 # Ark stuff
 

@@ -35,7 +35,7 @@ You will need to publish the following ports:
 - `DIFFICULTY` can be set to an `OverrideOfficialDifficulty` value, if so desired, otherwise it will not be used in the start command line
 - `MAX_PLAYERS` can be set to change the maximum players allowed at the same time on the server (default 70)
 - `BATTLE_EYE` can be set to any value besides `true` to disable it (default `true`)
-- `RCON_HOST` must be set to the external IP/DNS that your server should be reachable on (the rcon server does not respond on localhost)
+- `RCON_HOST` can be set to the external IP/DNS that your server should be reachable on
 - `RCON_GAME_LOG_BUFFER` sets the max length of the game log via `?RCONServerGameLogBuffer` (default 100)
 - `WHITELIST_USERS` can be set to a comma-separated list of [steamID64s](https://steamid.io/) which will initialize the `PlayersJoinNoCheckList.txt` file, if it does not exist yet, and set `-exclusivejoin`. To manage the whitelisted users you can use the RCON commands `AllowPlayerToJoinNoCheck <SteamID>` and `DisallowPlayerToJoinNoCheck <SteamID>`.
 - `ADDITIONAL_COMMAND_LINE` can be set to all the additional server parameters (*if they are not already supported through another env*) you want to use on start-up, e.g. `?NonPermanentDiseases=true?PreventOfflinePvP=true -insecure -noantispeedhack`. The [Ark Gamepedia](http://ark.gamepedia.com/Server_Configuration) is probably a good source for this.
