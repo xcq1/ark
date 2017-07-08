@@ -38,4 +38,6 @@ WORKDIR /ark/
 
 ADD run.sh /ark/run.sh
 
+RUN chmod +x /ark/run.sh
+
 CMD ["/ark/run.sh"]
