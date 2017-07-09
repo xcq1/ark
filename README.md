@@ -8,9 +8,9 @@ Automated dedicated Ark: Survival Evolved server
 ## ToDo
 **Planned features:**
 
-* Auto-Restart on update rollout, with broadcast & delayed until no more players present
-* Auto-Restart on mods update, with broadcast & delayed until no more players present
 * Try to optimize the baking in of envs one might one to change
+* Get mods to actually download
+* Auto-Restart on mods update, with broadcast & delayed until no more players present
 
 ## Usage
 
@@ -28,6 +28,8 @@ You will need to publish the following ports:
 - 27015/udp
 - 32330 (if you want rcon support, the password can be found and/or replaced in `/ark/rcon_pass`)
 
+If turned on, the auto-update feature will automatically shut down the server when it's empty and the version mismatches. This means you must either configure the container to auto-restart (`--restart=always`) or disable the `AUTO_UPDATE=false`.
+
 ### Stop
 
 Stopping or restarting the server will cause it to try to save the save game, however the default timeout is only 10 seconds for this. In case your save is large or your machine is slow, be sure to include a longer timeout by adding `-t 60`.
@@ -44,6 +46,7 @@ Stopping or restarting the server will cause it to try to save the save game, ho
 - `RCON_GAME_LOG_BUFFER` sets the max length of the game log via `?RCONServerGameLogBuffer` (default 100)
 - `WHITELIST_PLAYERS` can be set to a comma-separated list of [steamID64s](https://steamid.io/) which will initialize the `PlayersJoinNoCheckList.txt` file, if it does not exist yet, and set `-exclusivejoin`. To manage the whitelisted users you can use the RCON commands `AllowPlayerToJoinNoCheck <SteamID>` and `DisallowPlayerToJoinNoCheck <SteamID>`.
 - `ADDITIONAL_COMMAND_LINE` can be set to all the additional server parameters (*if they are not already supported through another env*) you want to use on start-up, e.g. `?NonPermanentDiseases=true?PreventOfflinePvP=true -insecure -noantispeedhack`. The [Ark Gamepedia](http://ark.gamepedia.com/Server_Configuration) is probably a good source for this.
+- `AUTO_UPDATE` can be set to any value besides `true` to disable it (default `true`)
 - `SAVE_GAME_NAME` can be set to an individual save game name (useful mainly for clusters, game default is `SavedArks`)
 - `CLUSTER_NAME` can be set to a cluster id (for `-clusterid`) so that you can join multiple servers in a cluster. This will also set `-NoTransferFromFiltering`. If you want to do this make sure that:
 -- You have multiple servers running, e.g. by creating a local image via `docker commit` and starting multiple instances (so you don't have to re-download all game files)

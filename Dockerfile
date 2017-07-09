@@ -24,8 +24,9 @@ ENV DIFFICULTY ""
 ENV MAX_PLAYERS "70"
 ENV BATTLE_EYE "true"
 ENV RCON_GAME_LOG_BUFFER "100"
-ENV WHITELIST_USERS ""
+ENV WHITELIST_PLAYERS ""
 ENV ADDITIONAL_SERVER_COMMAND_LINE ""
+ENV AUTO_UPDATE "true"
 ENV SAVE_GAME_NAME ""
 ENV CLUSTER_NAME ""
 
@@ -41,5 +42,16 @@ WORKDIR /ark/
 
 ADD run.sh /ark/run.sh
 RUN chmod +x /ark/run.sh
+
+ADD versioncheck/versioncheck.sh /ark/versioncheck/versioncheck.sh
+ADD versioncheck/playercheck.py /ark/versioncheck/playercheck.py
+ADD versioncheck/broadcast.py /ark/versioncheck/broadcast.py
+RUN chmod +x /ark/versioncheck/*
+
+RUN apt update && \
+	apt install -y cron && \
+	apt clean
+ADD versioncheck/crontab /etc/cron.d/ark-cron
+RUN chmod +x /etc/cron.d/ark-cron
 
 CMD ["/ark/run.sh"]
