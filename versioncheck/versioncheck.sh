@@ -2,7 +2,7 @@
 
 export AUTO_UPDATE=
 export RCON_HOST=
-export RCON_PASS=
+export RCON_PORT=
 
 if [ "${AUTO_UPDATE}" != "true" ]; then
 	exit

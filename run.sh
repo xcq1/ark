@@ -27,7 +27,7 @@ export RCON_PASSWORD=$(cat /ark/rcon_pass)
 
 sed -i "s/AUTO_UPDATE=/AUTO_UPDATE=${AUTO_UPDATE}/" /ark/versioncheck/versioncheck.sh
 sed -i "s/RCON_HOST=/RCON_HOST=${RCON_HOST}/" /ark/versioncheck/versioncheck.sh
-sed -i "s/RCON_PASS=/RCON_PASS=${RCON_PASS}/" /ark/versioncheck/versioncheck.sh
+sed -i "s/RCON_PORT=/RCON_PORT=${RCON_PORT}/" /ark/versioncheck/versioncheck.sh
 
 # parameter parsing
 
