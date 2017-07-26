@@ -18,6 +18,7 @@ if [ "${API_VERSION}" != "${LOCAL_VERSION}" ]; then
 	PLAYERS=$(python /ark/versioncheck/playercheck.py)
 	if [ "$PLAYERS" = "0" ]; then
 		kill -SIGINT `pgrep ShooterGame`
+		echo $API_VERSION > /ark/version.txt
 	else
 		python /ark/versioncheck/broadcast.py "Newer version found: ${API_VERSION} instead of ${LOCAL_VERSION}.\nWill auto-update once no more players on the server..."
 	fi
