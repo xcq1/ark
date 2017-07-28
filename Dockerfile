@@ -40,7 +40,6 @@ EXPOSE 27015
 EXPOSE 27015/udp
 EXPOSE 32330
 
-USER steam
 VOLUME /home/steam/ark/ShooterGame/Saved
 STOPSIGNAL SIGINT
 WORKDIR /home/steam/ark/
