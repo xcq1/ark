@@ -25,9 +25,9 @@ export RCON_PASSWORD=$(cat /home/steam/ark/rcon_pass)
 
 # configure version checker magic
 
-sed -i "s/AUTO_UPDATE=$/AUTO_UPDATE=${AUTO_UPDATE}/" /home/steam/ark/versioncheck/versioncheck.sh
-sed -i "s/RCON_HOST=$/RCON_HOST=${RCON_HOST}/" /home/steam/ark/versioncheck/versioncheck.sh
-sed -i "s/RCON_PORT=$/RCON_PORT=${RCON_PORT}/" /home/steam/ark/versioncheck/versioncheck.sh
+sudo sed -i "s/AUTO_UPDATE=$/AUTO_UPDATE=${AUTO_UPDATE}/" /home/steam/ark/versioncheck/versioncheck.sh
+sudo sed -i "s/RCON_HOST=$/RCON_HOST=${RCON_HOST}/" /home/steam/ark/versioncheck/versioncheck.sh
+sudo sed -i "s/RCON_PORT=$/RCON_PORT=${RCON_PORT}/" /home/steam/ark/versioncheck/versioncheck.sh
 
 # parameter parsing
 
