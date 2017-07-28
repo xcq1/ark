@@ -18,7 +18,7 @@ Automated dedicated Ark: Survival Evolved server
 
 In order to run the server, you should perform the following operations:
 
-The save game folder `/ark/ShooterGame/Saved` is a data volume. You should either mount in a host path or a named Docker volume container, or else Docker will create a new volume container on every start. Since Ark stores the configs inside a sub-folder `Config`, we consider them part of the save game and you can edit them there (`Game.ini`, `GameUserSettings.ini`, ...).
+The save game folder `/home/steam/ark/ShooterGame/Saved` is a data volume. You should either mount in a host path or a named Docker volume container, or else Docker will create a new volume container on every start. Since Ark stores the configs inside a sub-folder `Config`, we consider them part of the save game and you can edit them there (`Game.ini`, `GameUserSettings.ini`, ...).
 
 You will need to publish the following ports:
 
@@ -26,7 +26,7 @@ You will need to publish the following ports:
 - 7778/udp
 - 27015
 - 27015/udp
-- 32330 (if you want rcon support, the password can be found and/or replaced in `/ark/rcon_pass`)
+- 32330 (if you want rcon support, the password can be found and/or replaced in `/home/steam/ark/rcon_pass`)
 
 If turned on, the auto-update feature will automatically shut down the server when it's empty and the version mismatches. This means you must either configure the container to auto-restart (`--restart=always`) or disable the `AUTO_UPDATE=false`.
 
@@ -69,7 +69,7 @@ This is how I start my non-public Ark servers for the first time at the time of 
 `-e WHITELIST_PLAYERS=<censored> \`
 `-e ADDITIONAL_COMMAND_LINE=?AllowCrateSpawnsOnTopOfStructures=true?AllowRaidDinoFeeding=true?DestroyUnconnectedWaterPipes=true?EnableExtraStructurePreventionVolumes=false?OverrideStructurePlatformPrevention=true -ForceAllowCaveFlyers -noantispeedhack -NoBattlEye \`
 `-e CLUSTER_NAME=xcqcluster \`
-`-v /home/steam/ark/ShooterGame/Saved:/ark/ShooterGame/Saved \`
+`-v /home/steam/ark/ShooterGame/Saved:/home/steam/ark/ShooterGame/Saved \`
 `-p 7778:7778 -p 7778:7778/udp -p 27015:27015 -p 27015:27015/udp \`
 `--health-start-period=2m \`
 `--restart=always \`

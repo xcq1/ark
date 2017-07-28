@@ -9,17 +9,17 @@ if [ "${AUTO_UPDATE}" != "true" ]; then
 fi
 
 API_VERSION=$(curl http://arkdedicated.com/version)
-LOCAL_VERSION=$(cat /ark/version.txt)
+LOCAL_VERSION=$(cat /home/steam/ark/version.txt)
 
 if [ "${API_VERSION}" != "${LOCAL_VERSION}" ]; then
 	echo "Newer version found, trying to update..."
-	export RCON_PASSWORD=$(cat /ark/rcon_pass)
+	export RCON_PASSWORD=$(cat /home/steam/ark/rcon_pass)
 
-	PLAYERS=$(python /ark/versioncheck/playercheck.py)
+	PLAYERS=$(python /home/steam/ark/versioncheck/playercheck.py)
 	if [ "$PLAYERS" = "0" ]; then
 		kill -SIGINT `pgrep ShooterGame`
-		echo $API_VERSION > /ark/version.txt
+		echo $API_VERSION > /home/steam/ark/version.txt
 	else
-		python /ark/versioncheck/broadcast.py "Newer version found: ${API_VERSION} instead of ${LOCAL_VERSION}.\nWill auto-update once no more players on the server..."
+		python /home/steam/ark/versioncheck/broadcast.py "Newer version found: ${API_VERSION} instead of ${LOCAL_VERSION}.\nWill auto-update once no more players on the server..."
 	fi
 fi

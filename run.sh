@@ -5,29 +5,29 @@ if [ -z "${SERVER_NAME}" ]; then
 	exit 1
 fi
 
-/steam/install.sh
+/home/steam/Steam/install.sh
 
 # copy SteamCMD for workshop/automanagedmod support
-if [ ! -e "/ark/cmd_installed" ]; then
-	mkdir -p /ark/Engine/Binaries/ThirdParty/SteamCMD/Linux/
-	cp -r /steam/* /ark/Engine/Binaries/ThirdParty/SteamCMD/Linux/
-	touch /ark/cmd_installed
+if [ ! -e "/home/steam/ark/cmd_installed" ]; then
+	mkdir -p /home/steam/ark/Engine/Binaries/ThirdParty/SteamCMD/Linux/
+	cp -r /home/steam/Steam/* /home/steam/ark/Engine/Binaries/ThirdParty/SteamCMD/Linux/
+	touch /home/steam/ark/cmd_installed
 fi
 
 # RCON password magic
 
 if [ ! -e "/ark/rcon_pass" ]; then
-	cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 20 | head -n 1 > /ark/rcon_pass
+	cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 20 | head -n 1 > /home/steam/ark/rcon_pass
 	echo "No password configured in /ark/rcon_pass, created a new random one..."
 fi
 
-export RCON_PASSWORD=$(cat /ark/rcon_pass)
+export RCON_PASSWORD=$(cat /home/steam/ark/rcon_pass)
 
 # configure version checker magic
 
-sed -i "s/AUTO_UPDATE=$/AUTO_UPDATE=${AUTO_UPDATE}/" /ark/versioncheck/versioncheck.sh
-sed -i "s/RCON_HOST=$/RCON_HOST=${RCON_HOST}/" /ark/versioncheck/versioncheck.sh
-sed -i "s/RCON_PORT=$/RCON_PORT=${RCON_PORT}/" /ark/versioncheck/versioncheck.sh
+sed -i "s/AUTO_UPDATE=$/AUTO_UPDATE=${AUTO_UPDATE}/" /home/steam/ark/versioncheck/versioncheck.sh
+sed -i "s/RCON_HOST=$/RCON_HOST=${RCON_HOST}/" /home/steam/ark/versioncheck/versioncheck.sh
+sed -i "s/RCON_PORT=$/RCON_PORT=${RCON_PORT}/" /home/steam/ark/versioncheck/versioncheck.sh
 
 # parameter parsing
 
@@ -50,10 +50,10 @@ else
 fi
 
 if [ -n "${WHITELIST_PLAYERS}" ]; then	
-	echo ${WHITELIST_PLAYERS} | sed 's/,/\n/g' > /ark/ShooterGame/Binaries/Linux/PlayersJoinNoCheckList.txt
+	echo ${WHITELIST_PLAYERS} | sed 's/,/\n/g' > /home/steam/ark/ShooterGame/Binaries/Linux/PlayersJoinNoCheckList.txt
 	WHITELIST_CMD="-exclusivejoin"
 else
-	rm -f /ark/ShooterGame/Binaries/Linux/PlayersJoinNoCheckList.txt
+	rm -f /home/steam/ark/ShooterGame/Binaries/Linux/PlayersJoinNoCheckList.txt
 	WHITELIST_CMD=""
 fi
 
@@ -69,8 +69,8 @@ else
 	CLUSTER_CMD=""
 fi
 
-service cron start
+sudo service cron start
 
-cd /ark/ShooterGame/Binaries/Linux
+cd /home/steam/ark/ShooterGame/Binaries/Linux
 set -x
-exec /ark/ShooterGame/Binaries/Linux/ShooterGameServer ${MAP_NAME}?listen${MOD_CMD}?SessionName=${SERVER_NAME}?RCONEnabled=True?RCONPort=32330?ServerAdminPassword=${RCON_PASSWORD}?RCONServerGameLogBuffer=${RCON_GAME_LOG_BUFFER}?MaxPlayers=${MAX_PLAYERS}${DIFFICULTY_CMD}${SAVE_GAME_CMD}${ADDITIONAL_SERVER_COMMAND_LINE} -server -servergamelog -log -automanagedmods ${WHITELIST_CMD} ${BATTLE_EYE_CMD} ${CLUSTER_CMD}
+exec /home/steam/ark/ShooterGame/Binaries/Linux/ShooterGameServer ${MAP_NAME}?listen${MOD_CMD}?SessionName=${SERVER_NAME}?RCONEnabled=True?RCONPort=32330?ServerAdminPassword=${RCON_PASSWORD}?RCONServerGameLogBuffer=${RCON_GAME_LOG_BUFFER}?MaxPlayers=${MAX_PLAYERS}${DIFFICULTY_CMD}${SAVE_GAME_CMD}${ADDITIONAL_SERVER_COMMAND_LINE} -server -servergamelog -log -automanagedmods ${WHITELIST_CMD} ${BATTLE_EYE_CMD} ${CLUSTER_CMD}
