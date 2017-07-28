@@ -14,7 +14,7 @@ ENV RCON_HEALTH_REGEXP "(No Players|[0-9]\.)"
 
 # auto-fetch the rcon password from /home/steam/ark/rcon_pass
 USER root
-RUN sed -i 's|python|export RCON_PASSWORD=$(cat /home/steam/ark/rcon_pass)\n&|' /rcon/healthcheck.sh
+RUN sed -i 's|python|export RCON_PASSWORD=$(cat /home/steam/ark/rcon_pass)\n&|' /home/steam/rcon/healthcheck.sh
 
 # sudo so run.sh can start cron
 RUN echo "steam   ALL=NOPASSWD:ALL" >> /etc/sudoers

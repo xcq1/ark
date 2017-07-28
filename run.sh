@@ -16,9 +16,9 @@ fi
 
 # RCON password magic
 
-if [ ! -e "/ark/rcon_pass" ]; then
+if [ ! -e "/home/steam/ark/rcon_pass" ]; then
 	cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 20 | head -n 1 > /home/steam/ark/rcon_pass
-	echo "No password configured in /ark/rcon_pass, created a new random one..."
+	echo "No password configured in /home/steam/ark/rcon_pass, created a new random one..."
 fi
 
 export RCON_PASSWORD=$(cat /home/steam/ark/rcon_pass)
