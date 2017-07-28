@@ -16,9 +16,6 @@ ENV RCON_HEALTH_REGEXP "(No Players|[0-9]\.)"
 USER root
 RUN sed -i 's|python|export RCON_PASSWORD=$(cat /home/steam/ark/rcon_pass)\n&|' /home/steam/rcon/healthcheck.sh
 
-# sudo so run.sh can start cron
-RUN echo "steam   ALL=NOPASSWD:ALL" >> /etc/sudoers
-
 # Ark stuff
 
 ENV SERVER_NAME ""
@@ -54,10 +51,13 @@ ADD versioncheck/broadcast.py /home/steam/ark/versioncheck/broadcast.py
 RUN chmod +x /home/steam/ark/versioncheck/*
 
 RUN apt update && \
-	apt install -y cron && \
+	apt install -y cron sudo && \
 	apt clean
 ADD versioncheck/crontab /etc/cron.d/ark-cron
 RUN chmod +x /etc/cron.d/ark-cron
+
+# sudo so run.sh can start cron
+RUN echo "steam   ALL=NOPASSWD:ALL" >> /etc/sudoers
 
 USER steam
 
