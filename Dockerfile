@@ -61,4 +61,4 @@ RUN chmod +x /etc/cron.d/ark-cron
 
 USER steam
 
-CMD ["/ark/run.sh"]
+CMD ["/home/steam/ark/run.sh"]
