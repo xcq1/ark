@@ -22,9 +22,8 @@ The save game folder `/home/steam/ark/ShooterGame/Saved` is a data volume. You s
 
 You will need to publish the following ports:
 
-- 7778
+- 7777/udp
 - 7778/udp
-- 27015
 - 27015/udp
 - 32330 (if you want rcon support, the password can be found and/or replaced in `/home/steam/ark/rcon_pass`)
 
@@ -70,7 +69,7 @@ This is how I start my non-public Ark servers for the first time at the time of 
 `-e ADDITIONAL_COMMAND_LINE=?AllowCrateSpawnsOnTopOfStructures=true?AllowRaidDinoFeeding=true?DestroyUnconnectedWaterPipes=true?EnableExtraStructurePreventionVolumes=false?OverrideStructurePlatformPrevention=true -ForceAllowCaveFlyers -noantispeedhack -NoBattlEye \`
 `-e CLUSTER_NAME=xcqcluster \`
 `-v /home/steam/ark/ShooterGame/Saved:/home/steam/ark/ShooterGame/Saved \`
-`-p 7778:7778 -p 7778:7778/udp -p 27015:27015 -p 27015:27015/udp \`
+`-p 7777:7777/udp -p 7778:7778/udp -p 27015:27015/udp \`
 `--health-start-period=2m \`
 `--restart=always \`
 ` xcq1/ark`
