@@ -55,7 +55,7 @@ ADD versioncheck/broadcast.py /home/steam/ark/versioncheck/broadcast.py
 RUN chmod +x /home/steam/ark/versioncheck/*
 
 RUN apt update && \
-	apt install -y cron sudo && \
+	apt install -y cron sudo python3 && \
 	apt clean
 ADD versioncheck/crontab /etc/cron.d/ark-cron
 RUN chmod +x /etc/cron.d/ark-cron
