@@ -20,12 +20,14 @@ In order to run the server, you should perform the following operations:
 
 The save game folder `/home/steam/ark/ShooterGame/Saved` is a data volume. You should either mount in a host path or a named Docker volume container, or else Docker will create a new volume container on every start. Since Ark stores the configs inside a sub-folder `Config`, we consider them part of the save game and you can edit them there (`Game.ini`, `GameUserSettings.ini`, ...).
 
-You will need to publish the following ports:
+You will need to publish the following ports: `PORT`, `RAWPORT`, and `QUERYPORT`, the defaults of which are:
 
 - 7777/udp
 - 7778/udp
 - 27015/udp
 - 32330 (if you want rcon support, the password can be found and/or replaced in `/home/steam/ark/rcon_pass`)
+
+Just changing the environment variables will not suffice for the server to work on a different port, probably the protocol has some ports hard-coded.
 
 If turned on, the auto-update feature will automatically shut down the server when it's empty and the version mismatches. This means you must either configure the container to auto-restart (`--restart=always`) or disable the `AUTO_UPDATE=false`.
 
@@ -54,6 +56,9 @@ Stopping or restarting the server will cause it to try to save the save game, ho
 -- All the servers have a distinct `SAVE_GAME_NAME` set
 -- All the servers have the default ports in the container published to distinct ports on the host
 -- AFAIK the servers do **not** need to share a network
+- `PORT` can be set to the desired gameport (default 7777)
+- `RAWPORT` must be set to exactly `PORT+1` (never set explicitly, is only used for exposing) (default 7778)
+- `QUERYPORT` can be set to the desired query port (default 27015)
 
 ### Example
 
