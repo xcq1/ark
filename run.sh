@@ -69,6 +69,10 @@ else
 	CLUSTER_CMD=""
 fi
 
+sudo chmod -R o+rw /home/steam/ark/ShooterGame/Saved
+cd ~/ark
+python3 ark-moddodo-master/moddodo.py --modids ${MOD_LIST//,/ }
+
 sudo service cron start
 
 cd /home/steam/ark/ShooterGame/Binaries/Linux

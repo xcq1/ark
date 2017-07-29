@@ -9,7 +9,6 @@ Automated dedicated Ark: Survival Evolved server
 **Planned features:**
 
 * Try to optimize the baking in of envs one might one to change
-* Get mods to actually download
 * Auto-Restart on mods update, with broadcast & delayed until no more players present
 
 ## Usage

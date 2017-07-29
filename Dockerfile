@@ -40,6 +40,11 @@ VOLUME /home/steam/ark/ShooterGame/Saved
 STOPSIGNAL SIGINT
 WORKDIR /home/steam/ark/
 
+ADD https://github.com/xcq1/ark-moddodo/archive/master.tar.gz /home/steam/ark/
+RUN tar -xvzf /home/steam/ark/master.tar.gz && \
+	rm /home/steam/ark/master.tar.gz && \
+	chown -R steam:steam /home/steam/ark/ark-moddodo-master
+
 ADD run.sh /home/steam/ark/run.sh
 RUN chmod +x /home/steam/ark/run.sh && \
 	chown -R steam:steam /home/steam/ark
