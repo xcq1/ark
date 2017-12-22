@@ -24,6 +24,7 @@ You will need to publish the following ports: `PORT`, `RAWPORT`, and `QUERYPORT`
 - 7777/udp
 - 7778/udp
 - 27015/udp
+- 27015/tcp (if you want your server to show up in the server browser)
 - 32330 (if you want rcon support, the password can be found and/or replaced in `/home/steam/ark/rcon_pass`)
 
 Just changing the environment variables will not suffice for the server to work on a different port, probably the protocol has some ports hard-coded.
