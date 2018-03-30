@@ -71,7 +71,7 @@ This is how I start my non-public Ark servers for the first time at the time of 
 `-e MAX_PLAYERS=10 \`
 `-e BATTLE_EYE=false \`
 `-e WHITELIST_PLAYERS=<censored> \`
-`-e ADDITIONAL_COMMAND_LINE=?AllowCrateSpawnsOnTopOfStructures=true?AllowRaidDinoFeeding=true?DestroyUnconnectedWaterPipes=true?EnableExtraStructurePreventionVolumes=false?OverrideStructurePlatformPrevention=true -ForceAllowCaveFlyers -noantispeedhack -NoBattlEye \`
+`-e ADDITIONAL_COMMAND_LINE=?AllowCrateSpawnsOnTopOfStructures=true?AllowRaidDinoFeeding=true?DestroyUnconnectedWaterPipes=true?EnableExtraStructurePreventionVolumes=false?OverrideStructurePlatformPrevention=true -ForceAllowCaveFlyers -noantispeedhack\`
 `-e CLUSTER_NAME=xcqcluster \`
 `-v /home/steam/ark/ShooterGame/Saved:/home/steam/ark/ShooterGame/Saved \`
 `-p 7777:7777/udp -p 7778:7778/udp -p 27015:27015/udp \`
