@@ -5,6 +5,7 @@ if [ -z "${SERVER_NAME}" ]; then
 	exit 1
 fi
 
+curl http://arkdedicated.com/version | xargs > /home/steam/ark/version.txt
 /home/steam/Steam/install.sh
 
 # copy SteamCMD for workshop/automanagedmod support

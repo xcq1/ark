@@ -8,7 +8,7 @@ if [ "${AUTO_UPDATE}" != "true" ]; then
 	exit
 fi
 
-API_VERSION=$(curl http://arkdedicated.com/version)
+API_VERSION=$(curl http://arkdedicated.com/version | xargs)
 LOCAL_VERSION=$(cat /home/steam/ark/version.txt)
 
 if [ "${API_VERSION}" != "${LOCAL_VERSION}" ]; then
@@ -18,7 +18,6 @@ if [ "${API_VERSION}" != "${LOCAL_VERSION}" ]; then
 	PLAYERS=$(python /home/steam/ark/versioncheck/playercheck.py)
 	if [ "$PLAYERS" = "0" ]; then
 		kill -SIGINT `pgrep ShooterGame`
-		echo $API_VERSION > /home/steam/ark/version.txt
 	else
 		python /home/steam/ark/versioncheck/broadcast.py "Newer version found: ${API_VERSION} instead of ${LOCAL_VERSION}.\nWill auto-update once no more players on the server..."
 	fi
