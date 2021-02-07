@@ -9,7 +9,7 @@ if [ "${AUTO_UPDATE}" != "true" ]; then
 fi
 
 API_VERSION=$(curl http://arkdedicated.com/version | xargs)
-LOCAL_VERSION=$(cat /home/steam/ark/version.txt)
+LOCAL_VERSION=$(cat /home/steam/ark/versioncheck.txt)
 
 if [ "${API_VERSION}" != "${LOCAL_VERSION}" ]; then
 	echo "Newer version found, trying to update..."

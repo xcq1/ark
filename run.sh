@@ -5,7 +5,8 @@ if [ -z "${SERVER_NAME}" ]; then
 	exit 1
 fi
 
-curl http://arkdedicated.com/version | xargs > /home/steam/ark/version.txt
+echo "Starting Steam install/update..."
+
 /home/steam/Steam/install.sh
 
 # copy SteamCMD for workshop/automanagedmod support
@@ -70,11 +71,18 @@ else
 	CLUSTER_CMD=""
 fi
 
+echo "Starting ModDodo..."
+
 sudo chmod -R o+rw /home/steam/ark/ShooterGame/Saved
 cd ~/ark
 python3 ark-moddodo-master/moddodo.py --modids ${MOD_LIST//,/ }
 
+echo "Setting up versioncheck..."
+
+curl http://arkdedicated.com/version | xargs > /home/steam/ark/versioncheck.txt
 sudo service cron start
+
+echo "Running ARK server..."
 
 cd /home/steam/ark/ShooterGame/Binaries/Linux
 set -x
