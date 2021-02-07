@@ -4,7 +4,7 @@ LABEL maintainer="mail@tobiaskuhn.de"
 # set inherited variables
 
 ENV STEAMID "376030"
-ENV INSTALLDIR "/home/steam/ark/"
+ENV INSTALLDIR "/home/steam/ark/game/"
 
 ENV RCON_HOST "localhost"
 ENV RCON_PORT "32330"
@@ -36,7 +36,7 @@ ENV QUERYPORT "27015"
 
 EXPOSE $PORT/udp $RAWPORT/udp $QUERYPORT/udp 32330
 
-VOLUME /home/steam/ark/ShooterGame/Saved
+VOLUME /home/steam/ark/game/ShooterGame/Saved
 STOPSIGNAL SIGINT
 WORKDIR /home/steam/ark/
 

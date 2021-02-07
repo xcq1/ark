@@ -11,8 +11,8 @@ echo "Starting Steam install/update..."
 
 # copy SteamCMD for workshop/automanagedmod support
 if [ ! -e "/home/steam/ark/cmd_installed" ]; then
-	mkdir -p /home/steam/ark/Engine/Binaries/ThirdParty/SteamCMD/Linux/
-	cp -r /home/steam/Steam/* /home/steam/ark/Engine/Binaries/ThirdParty/SteamCMD/Linux/
+	mkdir -p /home/steam/ark/game/Engine/Binaries/ThirdParty/SteamCMD/Linux/
+	cp -r /home/steam/Steam/* /home/steam/ark/game/Engine/Binaries/ThirdParty/SteamCMD/Linux/
 	touch /home/steam/ark/cmd_installed
 fi
 
@@ -52,10 +52,10 @@ else
 fi
 
 if [ -n "${WHITELIST_PLAYERS}" ]; then	
-	echo ${WHITELIST_PLAYERS} | sed 's/,/\n/g' > /home/steam/ark/ShooterGame/Binaries/Linux/PlayersJoinNoCheckList.txt
+	echo ${WHITELIST_PLAYERS} | sed 's/,/\n/g' > /home/steam/ark/game/ShooterGame/Binaries/Linux/PlayersJoinNoCheckList.txt
 	WHITELIST_CMD="-exclusivejoin"
 else
-	rm -f /home/steam/ark/ShooterGame/Binaries/Linux/PlayersJoinNoCheckList.txt
+	rm -f /home/steam/ark/game/ShooterGame/Binaries/Linux/PlayersJoinNoCheckList.txt
 	WHITELIST_CMD=""
 fi
 
@@ -73,9 +73,9 @@ fi
 
 echo "Starting ModDodo..."
 
-sudo chmod -R o+rw /home/steam/ark/ShooterGame/Saved
+sudo chmod -R o+rw /home/steam/ark/game/ShooterGame/Saved
 cd ~/ark
-python3 ark-moddodo-master/moddodo.py --modids ${MOD_LIST//,/ }
+python3 ark-moddodo-master/moddodo.py --serverdir ./game --modids ${MOD_LIST//,/ }
 
 echo "Setting up versioncheck..."
 
@@ -84,6 +84,6 @@ sudo service cron start
 
 echo "Running ARK server..."
 
-cd /home/steam/ark/ShooterGame/Binaries/Linux
+cd /home/steam/ark/game/ShooterGame/Binaries/Linux
 set -x
-exec /home/steam/ark/ShooterGame/Binaries/Linux/ShooterGameServer ${MAP_NAME}?listen${MOD_CMD}?SessionName=${SERVER_NAME}?Port=${PORT}?QueryPort=${QUERYPORT}?RCONEnabled=True?RCONPort=32330?ServerAdminPassword=${RCON_PASSWORD}?RCONServerGameLogBuffer=${RCON_GAME_LOG_BUFFER}?MaxPlayers=${MAX_PLAYERS}${DIFFICULTY_CMD}${SAVE_GAME_CMD}${ADDITIONAL_COMMAND_LINE} -server -servergamelog -log -automanagedmods ${WHITELIST_CMD} ${BATTLE_EYE_CMD} ${CLUSTER_CMD}
+exec /home/steam/ark/game/ShooterGame/Binaries/Linux/ShooterGameServer ${MAP_NAME}?listen${MOD_CMD}?SessionName=${SERVER_NAME}?Port=${PORT}?QueryPort=${QUERYPORT}?RCONEnabled=True?RCONPort=32330?ServerAdminPassword=${RCON_PASSWORD}?RCONServerGameLogBuffer=${RCON_GAME_LOG_BUFFER}?MaxPlayers=${MAX_PLAYERS}${DIFFICULTY_CMD}${SAVE_GAME_CMD}${ADDITIONAL_COMMAND_LINE} -server -servergamelog -log -automanagedmods ${WHITELIST_CMD} ${BATTLE_EYE_CMD} ${CLUSTER_CMD}
